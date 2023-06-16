@@ -1,0 +1,47 @@
+<!DOCTYPE >
+{% extends 'Indexpage.html' %}
+{% block content %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+<!--                    <h4 class="card-title">Basic form elements</h4>-->
+<!--                    <p class="card-description">Basic form elements</p>-->
+                    <form class="forms-sample" method="post" action="{% url 'update_cate' catid=category.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <label for="">Category Name</label>
+                        <input type="text" class="form-control" id="" placeholder="Category Name" name="cname" value="{{category.Category_Name}}">
+                      </div>
+                      <div class="form-group">
+                        <label>File upload</label>
+                          <img src="{{category.Category_Image}}" width="100px" height="100px">
+                        <input type="file" name="img" >
+                        <div class="input-group col-xs-12">
+<!--                          <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">-->
+                          <span class="input-group-append">
+<!--                            <button class="file-upload-browse btn btn-primary" type="button"> Upload </button>-->
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea1">Description</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" name="descript">{{category.Description}}</textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'Indexpage.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+                        <form method="post" action="{% url 'updateproduct' productid=product.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+<div class="form-group">
+                        <label for="exampleSelectGender">EDIT PRODUCT</label>
+                        <select class="form-control" id="exampleSelectGender" name="caname" >
+                          <option> {{product.Category}}</option>
+                            {% for d in category %}
+                          <option>{{d.Category_Name}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+
+<div class="form-group">
+                        <label for="exampleInputName1">Product Name</label>
+                        <input type="text" class="form-control" id="" placeholder="Product Name" name="pname" value="{{product.Product_Name}}">
+                      </div>
+
+<div class="form-group">
+                        <label for="exampleInputName1">Price</label>
+                        <input type="number" class="form-control" id="exampleInputName1" placeholder="Price" name="pprice" value="{{product.Price}}">
+                      </div>
+<div class="form-group">
+                        <label for="exampleTextarea1">Description</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" name="desc" >{{product.Description}}</textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label>File upload</label>
+                          <img src="{{product.Image.url}}" width="100px" height="100px">
+                        <input type="file" name="pimg" >
+                        <div class="input-group col-xs-12">
+<!--                          <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">-->
+                          <span class="input-group-append">
+<!--                            <button class="file-upload-browse btn btn-primary" type="button"> Upload </button>-->
+                          </span>
+                        </div>
+                      </div>
+                          <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+                        </form>
+</body>
+</html>
+{% endblock %}
